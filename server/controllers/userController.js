@@ -25,7 +25,7 @@ module.exports      = {
                     })
                 })
                 .catch(err => {
-                    res.status(500).json({err:true})
+                    res.status(500).json(err)
                 })
 
             } else {
@@ -34,7 +34,7 @@ module.exports      = {
             }
         })
         .catch( err => {
-            res.status(500).json({err:true})
+            res.status(500).json(err)
         })
     },
 
