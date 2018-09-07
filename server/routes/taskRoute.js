@@ -11,7 +11,7 @@ router.patch('/:id/do', isLogin, setDo)
 router.patch('/:id/done', isLogin, setDone)
 router.patch('/:id/delete', isLogin, softdelete)
 router.patch('/:id/restore', isLogin, unsoftdelete)
-router.update('/:id', isLogin, updateOne)
+router.put('/:id', isLogin, updateOne)
 router.delete('/:id', isLogin, deleteOne)
 
 module.exports = router;
