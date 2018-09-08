@@ -59,7 +59,7 @@ function getAllDo() {
                     <p> ${e.description} </p>
                     <button class="btn-sm btn-outline-danger" onclick="setDone('${e._id}')">Done</button>
                     <button class="btn-sm btn-outline-primary" onclick="getOne('${e._id}')">Edit</button>
-                    <button class="btn-sm btn-outline-dark">Delete</button>
+                    <button class="btn-sm btn-outline-dark" onclick="deleteOne('${e._id}')">Delete</button>
                     </div>
                 </div>
             `)
@@ -97,7 +97,7 @@ function getAllDone() {
                     <p class="text-danger"> <s>${e.name}</s> </p>
                     <p> <s>${e.description}</s> </p>
                     <button class="btn-sm btn-outline-danger" onclick="setDo('${e._id}')">Cancel</button>
-                    <button class="btn-sm btn-outline-dark">Delete</button>
+                    <button class="btn-sm btn-outline-dark" onclick="deleteOne('${e._id}')">Delete</button>
                 </div>
             `)
         });
@@ -116,7 +116,6 @@ function getOne(id) {
         }
     })
     .done( function(result) {
-        console.log(result)
         $("#contentNow").text("")
         $("#contentNow").append(`
             <div class="card">
@@ -131,7 +130,9 @@ function getOne(id) {
             </div>
         `)
     })
-    .fail( function(error) {})
+    .fail( function(error) {
+        failDo('get todo')
+    })
 }
 
 function setDo(id) {
@@ -148,6 +149,7 @@ function setDo(id) {
     })
     .fail( function(error) {
         failDo('restore todo')
+        getAllDo()
     })
 }
 
@@ -161,10 +163,11 @@ function setDone(id) {
     })
     .done( function(result) {
         successDo('done / coplete a todo')
-        getAllDo()
+        getAllDone()
     })
     .fail( function(error) {
         failDo('done / coplete a todo')
+        getAllDone()
     })
 }
 
@@ -176,8 +179,14 @@ function softdelete(id) {
             token: localStorage.getItem('token')
         }
     })
-    .done( function(result) {})
-    .fail( function(error) {})
+    .done( function(result) {
+        successDo('delete todo')
+        getAllDo()
+    })
+    .fail( function(error) {
+        failDo('delete todo')
+        getAllDo()
+    })
 }
 
 function unsoftdelete(id) {
@@ -188,8 +197,14 @@ function unsoftdelete(id) {
             token: localStorage.getItem('token')
         }
     })
-    .done( function(result) {})
-    .fail( function(error) {})
+    .done( function(result) {
+        successDo('restore todo')
+        getAllDo()
+    })
+    .fail( function(error) {
+        failDo('restore todo')
+        getAllDo()
+    })
 }
 
 function updateOne(id) {
@@ -202,7 +217,7 @@ function updateOne(id) {
         data: {
             name: name,
             description: description,
-            dueDate: converToDB(dueDate),
+            dueDate: dueDate,
         },
         headers: {
             token: localStorage.getItem('token')
@@ -214,6 +229,7 @@ function updateOne(id) {
     })
     .fail( function(error) {
         failDo('update todo')
+        getAllDo()
     })
 }
 
@@ -227,9 +243,11 @@ function deleteOne(id) {
     })
     .done( function(result) {
         successDo('delete todo')
+        getAllDo()
     })
     .fail( function(error) {
         failDo('delete todo')
+        getAllDo()
     })
 }
 

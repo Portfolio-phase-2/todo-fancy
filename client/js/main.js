@@ -11,15 +11,6 @@ function converFromDB(tgl) {
     return yyyy+'-'+MM+'-'+dd+'T'+hh+':'+mm
 }
 
-function converToDB(tgl) {
-    let yyyy = tgl.substring(0, 4)
-    let MM = tgl.substring(5, 7)
-    let dd = tgl.substring(8, 10)
-    let hh = tgl.substring(11, 13)
-    let mm = tgl.substring(14, 16)
-    return yyyy+'-'+MM+'-'+dd+'T'+hh+':'+mm+'000Z'
-}
-
 function listmenu() {
     $("#listMenu").text("")
     $("#listMenu").append(`
