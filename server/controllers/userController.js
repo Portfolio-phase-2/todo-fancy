@@ -1,5 +1,6 @@
 const User = require('../models/User')
 const hash = require('../helpers/hashHelper')
+const sgMail = require('@sendgrid/mail')
 
 module.exports      = {
 
@@ -13,6 +14,16 @@ module.exports      = {
             if(user.length === 0) {
                 User.create({name, email, password})
                 .then(newUser => {
+                    sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+                    const msg = {
+                        to: newUser.email,
+                        from: 'talkasrul@gmail.com',
+                        subject: 'Thank For Register',
+                        text: 'Thanks for register in Todooku',
+                        html: '<strong>Thanks for register in Todooku</strong>',
+                    }
+                    sgMail.send(msg);
+
                     res.status(201).json({
                         err:false,
                         message: `Success to add ${newUser.name}`,
