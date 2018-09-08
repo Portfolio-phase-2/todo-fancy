@@ -83,9 +83,9 @@ function getAllDone() {
         $("#contentNow").text("")
         $("#contentNow").append(`
             <div class="card">
-                <div class="card-header bg-danger text-white">My Done Todo List</div>
+                <div class="card-header bg-danger text-white">My Todo List</div>
                 <div class="card-body">
-                    <div class="card" id="myTodo">
+                    <div class="card" id="myTodo" style="border: 1px solid rgba(255, 2, 2, 0)">
                     </div>
                 </div> 
             </div>
@@ -93,12 +93,14 @@ function getAllDone() {
 
         result.content.forEach(e => {
             $("#myTodo").append(`
+            <div class="card mb-3">
                 <div class="card-body">
-                    <p class="text-danger"> <s>${e.name}</s> </p>
-                    <p> <s>${e.description}</s> </p>
-                    <button class="btn-sm btn-outline-danger" onclick="setDo('${e._id}')">Cancel</button>
-                    <button class="btn-sm btn-outline-dark" onclick="deleteOne('${e._id}')">Delete</button>
+                <p class="text-danger"> <s> ${e.name} </s> </p>
+                <p> <s> ${e.description} </s> </p>
+                <button class="btn-sm btn-outline-danger" onclick="setDo('${e._id}')">Cancel</button>
+                <button class="btn-sm btn-outline-dark" onclick="deleteOne('${e._id}')">Delete</button>
                 </div>
+            </div>
             `)
         });
     })

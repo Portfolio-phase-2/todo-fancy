@@ -1,6 +1,19 @@
 $(document).ready( function() {
+    checkLogin()
     listmenu()
 })
+
+function checkLogin() {
+    let token = localStorage.getItem('token')
+    if(!token) {
+        window.location = '/auth.html'
+    }
+}
+
+function logout() {
+    localStorage.removeItem('token')
+    window.location = '/auth.html'
+}
 
 function converFromDB(tgl) {
     let yyyy = tgl.substring(0, 4)
@@ -32,7 +45,7 @@ function addTodoForm() {
                 <input type='datetime-local' placeholder="Date Time" class="form-control mb-3" min="${new Date()}" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}" id="dueDate" required/>
                 <input type='submit' class="btn btn-block btn-outline-danger mb-3" onclick="createOne()" value="Save Todo"/>
             </div> 
-            <div class="card-footer">Footer</div>
+            <div class="card-footer">Plan yout task</div>
         </div>
     `)
 }
