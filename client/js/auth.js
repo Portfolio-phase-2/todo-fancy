@@ -93,7 +93,37 @@ function doRegister() {
             window.location = '/'
         }
     })
-    .fail( function(error) {})
+    .fail( function(error) {
+        failDo('Failed to login, please check your account')
+    })
+}
+
+function successDo(msg) {
+    $("#alert").append(`
+        <div class="alert alert-success" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <p>Thanks you, ${msg}</p>
+        </div>
+    `)
+    setTimeout(() => {
+        $("#alert").text("")
+    }, 3000);
+}
+
+function failDo(msg) {
+    $("#alert").append(`
+        <div class="alert alert-warning" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <p>Sorry, ${msg}</p>
+        </div>
+    `)
+    setTimeout(() => {
+        $("#alert").text("")
+    }, 3000);
 }
 
 

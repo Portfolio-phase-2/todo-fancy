@@ -1,6 +1,7 @@
 $(document).ready( function() {
     checkLogin()
     listmenu()
+    weather()
 })
 
 function checkLogin() {
@@ -72,4 +73,29 @@ function contentNow() {
             </div> 
         </div>
     `)
+}
+
+function weather() {
+    $.ajax({
+        method: 'GET',
+        url: `http://localhost:3000/suhu/jakarta`
+    })
+    .done(function (result) {
+        let suhu = result.data.main.temp - 273.15 + `' Celcius`
+        let awan = result.data.weather[0].main
+        let icon = `<img src="http://openweathermap.org/img/w/${result.data.weather[0].icon}.png" width="100px" alt="icon">`
+
+        $("#weather").append(`
+            <div class="card mb-3">
+                <div class="card-header bg-danger text-white">Jakarta</div>
+                <div class="card-body">
+                    ${icon}
+                    ${suhu} - ${awan}
+                </div>
+            </div>
+        `)
+    })
+    .fail(function (err) {
+        
+    })
 }
