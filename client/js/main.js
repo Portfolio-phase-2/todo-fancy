@@ -78,7 +78,7 @@ function contentNow() {
 function weather() {
     $.ajax({
         method: 'GET',
-        url: `http://localhost:3000/suhu/jakarta`
+        url: `https://todooku.padangjs.com/suhu/jakarta`
     })
     .done(function (result) {
         let suhu = result.data.main.temp - 273.15 + `' Celcius`
