@@ -1,4 +1,4 @@
-const url = 'http://localhost:3000'
+const url = 'https://todooku.padangjs.com'
 $(document).ready( function() {
     setTimeout(() => {
         loginForm()
@@ -18,13 +18,14 @@ function loginForm() {
     $("#formAuth").html("")
     $("#formAuth").append(`
 
-    <div class="row h-100 justify-content-center align-items-center">
+    <div class="row h-100 justify-content-center align-items-center mt-3 mb-3">
+        <h1 class="text-white mt-3 mb-3">Todooku</h1>
         <form class="col-12">
             <div class="form-group">
                 <input type="email" class="form-control" id="email" placeholder="Email">
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" id="password" placeholder="Password">
+                <input type="password" class="form-control" id="password" placeholder="Password">
             </div>
 
             <input type="button" value="Sign In" class="btn btn-outline-light btn-block mb-3" onclick="doLogin()">
@@ -39,7 +40,8 @@ function registerForm() {
     $("#formAuth").html("")
     $("#formAuth").append(`
 
-    <div class="row h-100 justify-content-center align-items-center">
+    <div class="row h-100 justify-content-center align-items-center mt-3 mb-3">
+        <h1 class="text-white mt-3 mb-3">Todooku</h1>
         <form class="col-12">
 
             <div class="form-group">
@@ -49,7 +51,7 @@ function registerForm() {
                 <input type="email" class="form-control" id="email" placeholder="Email">
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" id="password" placeholder="Password">
+                <input type="password" class="form-control" id="password" placeholder="Password">
             </div>
 
             <input type="button" value="Sign Up" class="btn btn-outline-light btn-block" onclick="doRegister()">
